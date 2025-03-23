@@ -1,0 +1,19 @@
+name: Rust/Cargo CI
+
+on:
+  push:
+    branches: [ gcc.amd64 ]
+  pull_request:
+    branches: [ gcc.amd64 ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install Rust
+      uses: dtolnay/rust-toolchain@master
+      with:
+        toolchain: stable
+    - name: Test
+      run: cargo test --all
